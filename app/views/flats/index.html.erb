@@ -1,0 +1,21 @@
+
+<div class="col">
+  <% if @query %>
+      <p>You searched for <strong><%= @query %></strong>. We found <%= @flats.count %> flats out of our <%= Flat.count %> on our website.</p>
+  <% else %>
+      <p>All <%= Flat.count %> flats.</p>
+  <% end %>
+</div>
+
+<ul class="list-inline">
+  <% @flats.each do |flat| %>
+    <li><h2><%= flat.name %></h2>
+      <p><%= flat.description %></p>
+      <p><%= flat.address %></p>
+      <p><%= flat.price_per_night %></p>
+      <p><%= flat.number_of_guests %></p>
+      <%= link_to "More details", flat_path(flat) %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Add a flat", new_flat_path(@flat) %>
